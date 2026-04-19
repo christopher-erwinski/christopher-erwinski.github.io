@@ -109,6 +109,16 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);lette
 .ha{opacity:0;animation:hIn 0.9s ease forwards;}
 .a1{animation-delay:0.1s;}.a2{animation-delay:0.28s;}.a3{animation-delay:0.46s;}.a4{animation-delay:0.64s;}.a5{animation-delay:0.8s;}
 @media(max-width:640px){.hero{padding:7rem 0 4rem;}.hero h1{font-size:46px;}.sg{grid-template-columns:1fr;}.cw{padding:3rem 1.75rem;}.ph{padding:1.5rem;}.pb{padding:0 1.5rem 1.5rem;}body{cursor:auto;}#cur,#ring{display:none;}}
+.vslot{margin-top:6px;border-radius:var(--rl);overflow:hidden;background:var(--bg3);border:1px solid var(--border2);}
+.vph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem;gap:10px;text-align:center;}
+.vph-icon{color:var(--text3);}
+.vph-text{font-size:14px;color:var(--text3);font-weight:400;}
+.vph-hint{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);opacity:0.5;}
+.vframe{width:100%;aspect-ratio:16/9;border:none;display:block;}
+.dl-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+.dl-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;color:var(--text2);text-decoration:none;background:var(--bg3);transition:all 0.2s;font-family:'Outfit',sans-serif;}
+.dl-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--ag2);}
+.dl-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -118,7 +128,7 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);lette
 
 <nav id="nav">
   <div class="ni">
-    <div class="nn">Christopher<span class="nd">.</span></div>
+    <div class="nn">Chris<span class="nd">.</span></div>
     <div class="nl"><a href="#work">Work</a><a href="#contact">Contact</a></div>
   </div>
 </nav>
@@ -164,6 +174,19 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);lette
         <div class="psc"><div class="psl">What I built</div><div class="ptx">A fully automated lead handling pipeline: every form submission triggers Claude AI to score the lead as Hot, Warm, or Cold with a one-line reason. All leads log to Google Sheets. Hot leads send an instant alert to the agent. Every lead receives a personalised reply <strong>within 60 seconds</strong>, 24/7.</div></div>
         <div class="psc"><div class="psl">Results</div><ul class="rl"><li>0 minutes/day spent on manual lead replies — was 2+ hours</li><li>Every lead answered within 60 seconds including evenings and weekends</li><li>Full lead pipeline visible in one spreadsheet with AI scores</li><li>Zero missed leads since implementation</li></ul></div>
         <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Haiku)</span><span class="tb">Tally.so</span><span class="tb">Google Sheets</span><span class="tb">Gmail</span></div></div>
+        <div class="psc"><div class="psl">Demo</div>
+          <!-- WHEN READY: replace the vph div below with: <iframe class="vframe" src="https://www.loom.com/embed/YOUR_LOOM_ID"></iframe> -->
+          <div class="vslot"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div><div class="vph-text">Demo video coming soon</div><div class="vph-hint">90-second walkthrough of the automation running live</div></div></div>
+        </div>
+        <div class="psc"><div class="psl">Download blueprint</div>
+          <div class="dl-row">
+            <!-- WHEN READY: replace # with your Make.com JSON export download link -->
+            <a class="dl-btn" href="#" onclick="return false;">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Make.com blueprint (.json) — coming soon
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -174,6 +197,18 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);lette
         <div class="psc"><div class="psl">What I built</div><div class="ptx">A one-click content pipeline: paste an article URL, Make.com fetches the content, Claude extracts 3 key insights and rewrites them as a LinkedIn post, a 5-tweet thread, and an email newsletter section. All three land in Notion <strong>within 30 seconds</strong>.</div></div>
         <div class="psc"><div class="psl">Results</div><ul class="rl"><li>Repurposing time from 45–60 minutes to under 2 minutes per article</li><li>Monthly saving: ~4 hours of team time</li><li>Team now repurposes every article — previously skipped some due to time</li><li>All content organised automatically in Notion by date</li></ul></div>
         <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Sonnet)</span><span class="tb">Tally.so</span><span class="tb">Notion</span></div></div>
+        <div class="psc"><div class="psl">Demo</div>
+          <!-- WHEN READY: replace the vph div below with: <iframe class="vframe" src="https://www.loom.com/embed/YOUR_LOOM_ID"></iframe> -->
+          <div class="vslot"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div><div class="vph-text">Demo video coming soon</div><div class="vph-hint">90-second walkthrough of the automation running live</div></div></div>
+        </div>
+        <div class="psc"><div class="psl">Download blueprint</div>
+          <div class="dl-row">
+            <a class="dl-btn" href="#" onclick="return false;">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Make.com blueprint (.json) — coming soon
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -184,6 +219,18 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);lette
         <div class="psc"><div class="psl">What I built</div><div class="ptx">An AI assistant trained on the business's own information: customers submit questions via a form, Claude reads a Google Doc knowledge base and writes an accurate answer using only their real data. The customer receives a <strong>professional reply within 60 seconds</strong>. The owner gets a daily digest.</div></div>
         <div class="psc"><div class="psl">Results</div><ul class="rl"><li>0 minutes spent on routine customer questions — was 1–2 hours/week</li><li>All questions answered within 60 seconds including nights and weekends</li><li>Answers specific to the business — not generic AI responses</li><li>Client updates knowledge base themselves — no technical knowledge required</li></ul></div>
         <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Haiku)</span><span class="tb">Tally.so</span><span class="tb">Google Docs</span><span class="tb">Gmail</span></div></div>
+        <div class="psc"><div class="psl">Demo</div>
+          <!-- WHEN READY: replace the vph div below with: <iframe class="vframe" src="https://www.loom.com/embed/YOUR_LOOM_ID"></iframe> -->
+          <div class="vslot"><div class="vph"><div class="vph-icon"><svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div><div class="vph-text">Demo video coming soon</div><div class="vph-hint">90-second walkthrough of the automation running live</div></div></div>
+        </div>
+        <div class="psc"><div class="psl">Download blueprint</div>
+          <div class="dl-row">
+            <a class="dl-btn" href="#" onclick="return false;">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Make.com blueprint (.json) — coming soon
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
