@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher — AI Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a08;--bg2:#111110;--bg3:#191917;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);--text:#f2efe8;--text2:#8a8780;--text3:#52504c;--accent:#d4a04a;--accent2:#e8b86a;--ag:rgba(212,160,74,0.15);--ag2:rgba(212,160,74,0.06);--green:#52a880;--r:12px;--rl:20px;--rxl:28px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;cursor:none;}
+#cur{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.15s;}
+#ring{width:36px;height:36px;border:1px solid rgba(212,160,74,0.35);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,border-color 0.2s;}
+.blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.b1,.b2,.b3{position:absolute;border-radius:50%;filter:blur(90px);}
+.b1{width:700px;height:700px;background:radial-gradient(circle,rgba(212,160,74,0.11),transparent 70%);top:-250px;left:-150px;animation:bf 28s ease-in-out infinite;}
+.b2{width:600px;height:600px;background:radial-gradient(circle,rgba(74,120,212,0.07),transparent 70%);bottom:-250px;right:-150px;animation:bf 22s ease-in-out infinite;animation-delay:-12s;}
+.b3{width:500px;height:500px;background:radial-gradient(circle,rgba(82,168,128,0.06),transparent 70%);top:40%;left:40%;animation:bf 18s ease-in-out infinite;animation-delay:-6s;}
+@keyframes bf{0%,100%{transform:translate(0,0);}33%{transform:translate(50px,-40px);}66%{transform:translate(-40px,50px);}}
+.wrap{max-width:860px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:2;}
+nav{padding:1.5rem 0;position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s;}
+nav.scrolled{background:rgba(10,10,8,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.ni{max-width:860px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;}
+.nn{font-family:'Playfair Display',serif;font-size:19px;color:var(--text);}
+.nd{color:var(--accent);}
+.nl{display:flex;gap:2.5rem;}
+.nl a{font-size:14px;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;}
+.nl a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.25s;}
+.nl a:hover{color:var(--text);}
+.nl a:hover::after{width:100%;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 0 6rem;position:relative;}
+.ey{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:14px;}
+.ey::before{content:'';width:36px;height:1px;background:var(--accent);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(54px,9vw,92px);font-weight:700;line-height:1.03;letter-spacing:-0.03em;color:var(--text);margin-bottom:2rem;}
+.hero h1 .it{font-style:italic;color:var(--accent);}
+.hb{font-size:20px;color:var(--text2);max-width:580px;line-height:1.8;margin-bottom:3rem;font-weight:300;}
+.cta{display:flex;gap:14px;flex-wrap:wrap;}
+.bp{display:inline-flex;align-items:center;padding:16px 32px;background:var(--accent);color:#0a0a08;font-size:15px;font-weight:600;border-radius:var(--r);text-decoration:none;transition:all 0.2s;font-family:'Outfit',sans-serif;}
+.bp:hover{background:var(--accent2);transform:translateY(-3px);box-shadow:0 16px 48px rgba(212,160,74,0.35);}
+.bs{display:inline-flex;align-items:center;padding:16px 32px;border:1px solid var(--border3);color:var(--text2);font-size:15px;font-weight:400;border-radius:var(--r);text-decoration:none;transition:all 0.2s;font-family:'Outfit',sans-serif;}
+.bs:hover{border-color:var(--accent);color:var(--accent);background:var(--ag2);transform:translateY(-2px);}
+.si{position:absolute;bottom:3rem;left:0;display:flex;align-items:center;gap:12px;}
+.sl{width:1px;height:48px;background:linear-gradient(to bottom,var(--text3),transparent);animation:sp 2s ease-in-out infinite;}
+.slbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--text3);writing-mode:vertical-rl;}
+@keyframes sp{0%,100%{opacity:0.3;}50%{opacity:0.7;}}
+.mq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.1rem 0;overflow:hidden;position:relative;z-index:2;background:var(--bg2);}
+.mt{display:flex;animation:ms 30s linear infinite;width:max-content;}
+.mi{display:flex;align-items:center;gap:14px;padding:0 2rem;white-space:nowrap;font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;}
+.md{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:0.5;}
+@keyframes ms{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.s{padding:6.5rem 0;position:relative;z-index:2;}
+.dv{height:1px;background:var(--border);position:relative;z-index:2;}
+.sn{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+.st{font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,56px);font-weight:700;letter-spacing:-0.025em;color:var(--text);line-height:1.08;margin-bottom:3.5rem;}
+.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;border:1px solid var(--border);border-radius:var(--rxl);overflow:hidden;background:var(--border);}
+.sv{padding:2.25rem;background:var(--bg2);transition:background 0.2s;position:relative;overflow:hidden;}
+.sv::before{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 30% 30%,var(--ag),transparent 70%);transition:opacity 0.3s;pointer-events:none;}
+.sv:hover::before{opacity:1;}
+.sv:hover{background:var(--bg3);}
+.sic{width:46px;height:46px;border-radius:11px;background:var(--ag);border:1px solid rgba(212,160,74,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;}
+.sic svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.snm{font-size:17px;font-weight:600;color:var(--text);margin-bottom:7px;}
+.sd{font-size:15px;color:var(--text2);line-height:1.65;font-weight:300;}
+.pc{border:1px solid var(--border);border-radius:var(--rxl);overflow:hidden;margin-bottom:14px;background:var(--bg2);transition:border-color 0.25s,box-shadow 0.3s;position:relative;}
+.pc::after{content:'';position:absolute;inset:0;border-radius:var(--rxl);opacity:0;background:radial-gradient(circle at 15% 50%,var(--ag2),transparent 55%);transition:opacity 0.3s;pointer-events:none;}
+.pc:hover{border-color:rgba(212,160,74,0.22);box-shadow:0 12px 60px rgba(0,0,0,0.5);}
+.pc:hover::after{opacity:1;}
+.ph{display:flex;align-items:flex-start;gap:20px;padding:2rem 2.25rem;cursor:pointer;}
+.pn{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);padding-top:4px;flex-shrink:0;opacity:0.55;}
+.pi{flex:1;}
+.pt{font-size:19px;font-weight:600;color:var(--text);margin-bottom:5px;letter-spacing:-0.01em;}
+.ps{font-size:15px;color:var(--text2);font-weight:300;}
+.ptg{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px;}
+.ptg span{font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid var(--border2);color:var(--text3);}
+.ptog{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:10px;color:var(--text3);transition:transform 0.25s,border-color 0.2s,background 0.2s,color 0.2s;}
+.ptog.op{transform:rotate(180deg);border-color:var(--accent);background:var(--ag);color:var(--accent);}
+.pb{padding:0 2.25rem 2.25rem;border-top:1px solid var(--border);display:none;}
+.pb.op{display:block;}
+.psc{margin-top:1.75rem;}
+.psl{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:11px;}
+.ptx{font-size:16px;color:var(--text2);line-height:1.75;font-weight:300;}
+.ptx strong{color:var(--text);font-weight:500;}
+.rl{list-style:none;}
+.rl li{font-size:16px;color:var(--text2);padding:11px 0 11px 24px;position:relative;font-weight:300;border-bottom:1px solid var(--border);line-height:1.55;}
+.rl li:last-child{border-bottom:none;}
+.rl li::before{content:'';position:absolute;left:0;top:19px;width:8px;height:8px;border-radius:50%;background:var(--green);}
+.tr{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.tb{font-family:'DM Mono',monospace;font-size:12px;padding:5px 11px;border-radius:6px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);}
+.tp{border:1px dashed var(--border2);border-radius:var(--rxl);padding:3.5rem;text-align:center;}
+.tp p{font-size:16px;color:var(--text3);font-weight:300;}
+.cw{border:1px solid var(--border);border-radius:var(--rxl);padding:5rem;background:var(--bg2);position:relative;overflow:hidden;text-align:center;}
+.cw::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--ag),transparent 70%);pointer-events:none;}
+.cl{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.5rem;}
+.ch{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,50px);font-weight:700;letter-spacing:-0.025em;color:var(--text);line-height:1.12;margin-bottom:1.25rem;}
+.ch em{color:var(--accent);font-style:italic;}
+.csub{font-size:17px;color:var(--text2);font-weight:300;margin-bottom:3rem;line-height:1.7;}
+.cls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.clk{display:flex;align-items:center;gap:12px;padding:14px 24px;border:1px solid var(--border2);border-radius:var(--r);text-decoration:none;transition:all 0.2s;background:var(--bg3);}
+.clk:hover{border-color:var(--accent);background:var(--ag);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+.cll{font-size:12px;color:var(--text3);font-weight:300;margin-bottom:2px;}
+.clv{font-size:15px;color:var(--text);font-weight:500;}
+footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border);position:relative;z-index:2;}
+footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.06em;}
+.rv{opacity:0;transform:translateY(36px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.rv.vis{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+@keyframes hIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.ha{opacity:0;animation:hIn 0.9s ease forwards;}
+.a1{animation-delay:0.1s;}.a2{animation-delay:0.28s;}.a3{animation-delay:0.46s;}.a4{animation-delay:0.64s;}.a5{animation-delay:0.8s;}
+@media(max-width:640px){.hero{padding:7rem 0 4rem;}.hero h1{font-size:46px;}.sg{grid-template-columns:1fr;}.cw{padding:3rem 1.75rem;}.ph{padding:1.5rem;}.pb{padding:0 1.5rem 1.5rem;}body{cursor:auto;}#cur,#ring{display:none;}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="ring"></div>
+<div class="blobs"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+
+<nav id="nav">
+  <div class="ni">
+    <div class="nn">Christopher<span class="nd">.</span></div>
+    <div class="nl"><a href="#work">Work</a><a href="#contact">Contact</a></div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="ey ha a1">AI Automation Builder</div>
+    <h1 class="ha a2">I build systems<br>that <span class="it">work while<br>you don't.</span></h1>
+    <p class="hb ha a3">I help small businesses replace hours of manual, repetitive work with intelligent AI workflows — so they spend time on what actually matters.</p>
+    <div class="cta ha a4"><a href="#work" class="bp">See my work</a><a href="#contact" class="bs">Get in touch</a></div>
+    <div class="si ha a5"><div class="sl"></div><div class="slbl">scroll</div></div>
+  </section>
+</div>
+
+<div class="mq">
+  <div class="mt">
+    <div class="mi"><span>Make.com</span><div class="md"></div></div><div class="mi"><span>Claude API</span><div class="md"></div></div><div class="mi"><span>AI Automation</span><div class="md"></div></div><div class="mi"><span>Lead Qualification</span><div class="md"></div></div><div class="mi"><span>Workflow Design</span><div class="md"></div></div><div class="mi"><span>Google Workspace</span><div class="md"></div></div><div class="mi"><span>Airtable</span><div class="md"></div></div><div class="mi"><span>Notion</span><div class="md"></div></div><div class="mi"><span>Customer Service AI</span><div class="md"></div></div><div class="mi"><span>Content Automation</span><div class="md"></div></div>
+    <div class="mi"><span>Make.com</span><div class="md"></div></div><div class="mi"><span>Claude API</span><div class="md"></div></div><div class="mi"><span>AI Automation</span><div class="md"></div></div><div class="mi"><span>Lead Qualification</span><div class="md"></div></div><div class="mi"><span>Workflow Design</span><div class="md"></div></div><div class="mi"><span>Google Workspace</span><div class="md"></div></div><div class="mi"><span>Airtable</span><div class="md"></div></div><div class="mi"><span>Notion</span><div class="md"></div></div><div class="mi"><span>Customer Service AI</span><div class="md"></div></div><div class="mi"><span>Content Automation</span><div class="md"></div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="s">
+    <div class="rv"><div class="sn">01 — What I build</div><div class="st">AI systems for<br>real business problems</div></div>
+    <div class="sg rv d1">
+      <div class="sv"><div class="sic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="snm">Lead qualification</div><div class="sd">AI scores every inbound lead automatically — you only focus on the ones worth your time.</div></div>
+      <div class="sv"><div class="sic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="snm">AI customer service</div><div class="sd">Instant accurate replies using your own business data — not generic AI responses.</div></div>
+      <div class="sv"><div class="sic"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="snm">Content repurposing</div><div class="sd">One article becomes LinkedIn, Twitter, and email newsletter content in 30 seconds.</div></div>
+      <div class="sv"><div class="sic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="snm">Custom workflows</div><div class="sd">Any repetitive process your team does manually — I automate it and connect all your tools.</div></div>
+    </div>
+  </section>
+
+  <div class="dv"></div>
+
+  <section class="s" id="work">
+    <div class="rv"><div class="sn">02 — Recent builds</div><div class="st">Projects that<br>replaced real work</div></div>
+
+    <div class="pc rv d1">
+      <div class="ph" onclick="tog('p1')"><div class="pn">01</div><div class="pi"><div class="pt">AI Lead Qualification System</div><div class="ps">Real estate agency — Netherlands</div><div class="ptg"><span>Make.com</span><span>Claude API</span><span>Gmail</span><span>Google Sheets</span></div></div><div class="ptog" id="t-p1">▼</div></div>
+      <div class="pb" id="b-p1">
+        <div class="psc"><div class="psl">The problem</div><div class="ptx">The client was receiving 20–30 property enquiries per week through their website contact form. Every enquiry required manual reading, a judgment call, and a hand-written reply. This was taking <strong>2+ hours daily</strong> and leads were frequently missed or replied to hours later — by which point they had contacted a competitor.</div></div>
+        <div class="psc"><div class="psl">What I built</div><div class="ptx">A fully automated lead handling pipeline: every form submission triggers Claude AI to score the lead as Hot, Warm, or Cold with a one-line reason. All leads log to Google Sheets. Hot leads send an instant alert to the agent. Every lead receives a personalised reply <strong>within 60 seconds</strong>, 24/7.</div></div>
+        <div class="psc"><div class="psl">Results</div><ul class="rl"><li>0 minutes/day spent on manual lead replies — was 2+ hours</li><li>Every lead answered within 60 seconds including evenings and weekends</li><li>Full lead pipeline visible in one spreadsheet with AI scores</li><li>Zero missed leads since implementation</li></ul></div>
+        <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Haiku)</span><span class="tb">Tally.so</span><span class="tb">Google Sheets</span><span class="tb">Gmail</span></div></div>
+      </div>
+    </div>
+
+    <div class="pc rv d2">
+      <div class="ph" onclick="tog('p2')"><div class="pn">02</div><div class="pi"><div class="pt">AI Content Repurposing Pipeline</div><div class="ps">Marketing agency — Netherlands</div><div class="ptg"><span>Make.com</span><span>Claude API</span><span>Notion</span></div></div><div class="ptog" id="t-p2">▼</div></div>
+      <div class="pb" id="b-p2">
+        <div class="psc"><div class="psl">The problem</div><div class="ptx">The client publishes 4 blog posts per month and wanted to repurpose each one across LinkedIn, Twitter, and their email newsletter. Doing this manually took <strong>45–60 minutes per article</strong> — a 4–5 hour monthly task for one team member.</div></div>
+        <div class="psc"><div class="psl">What I built</div><div class="ptx">A one-click content pipeline: paste an article URL, Make.com fetches the content, Claude extracts 3 key insights and rewrites them as a LinkedIn post, a 5-tweet thread, and an email newsletter section. All three land in Notion <strong>within 30 seconds</strong>.</div></div>
+        <div class="psc"><div class="psl">Results</div><ul class="rl"><li>Repurposing time from 45–60 minutes to under 2 minutes per article</li><li>Monthly saving: ~4 hours of team time</li><li>Team now repurposes every article — previously skipped some due to time</li><li>All content organised automatically in Notion by date</li></ul></div>
+        <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Sonnet)</span><span class="tb">Tally.so</span><span class="tb">Notion</span></div></div>
+      </div>
+    </div>
+
+    <div class="pc rv d3">
+      <div class="ph" onclick="tog('p3')"><div class="pn">03</div><div class="pi"><div class="pt">AI Customer Service Chatbot</div><div class="ps">Local service business — Netherlands</div><div class="ptg"><span>Make.com</span><span>Claude API</span><span>Google Docs</span><span>Gmail</span></div></div><div class="ptog" id="t-p3">▼</div></div>
+      <div class="pb" id="b-p3">
+        <div class="psc"><div class="psl">The problem</div><div class="ptx">The client received 15–20 customer questions per week via email — mostly the same questions about pricing and availability. Answering them took <strong>1–2 hours per week</strong>, and questions outside business hours went unanswered until the next morning.</div></div>
+        <div class="psc"><div class="psl">What I built</div><div class="ptx">An AI assistant trained on the business's own information: customers submit questions via a form, Claude reads a Google Doc knowledge base and writes an accurate answer using only their real data. The customer receives a <strong>professional reply within 60 seconds</strong>. The owner gets a daily digest.</div></div>
+        <div class="psc"><div class="psl">Results</div><ul class="rl"><li>0 minutes spent on routine customer questions — was 1–2 hours/week</li><li>All questions answered within 60 seconds including nights and weekends</li><li>Answers specific to the business — not generic AI responses</li><li>Client updates knowledge base themselves — no technical knowledge required</li></ul></div>
+        <div class="psc"><div class="psl">Tools</div><div class="tr"><span class="tb">Make.com</span><span class="tb">Claude API (Haiku)</span><span class="tb">Tally.so</span><span class="tb">Google Docs</span><span class="tb">Gmail</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dv"></div>
+
+  <section class="s">
+    <div class="rv"><div class="sn">03 — Social proof</div><div class="st">What clients say</div></div>
+    <div class="tp rv d1"><p>Testimonials coming soon — currently completing first client projects.</p></div>
+  </section>
+
+  <div class="dv"></div>
+
+  <section class="s" id="contact">
+    <div class="cw rv">
+      <div class="cl">Let's work together</div>
+      <div class="ch">Ready to save<br><em>10+ hours a week?</em></div>
+      <p class="csub">Tell me what your team does manually.<br>I'll tell you if I can automate it.</p>
+      <div class="cls">
+        <a class="clk" href="mailto:erwinskik@gmail.com"><div><div class="cll">Email</div><div class="clv">erwinskik@gmail.com</div></div></a>
+        <a class="clk" href="https://www.linkedin.com/in/krzysztoferwinski/" target="_blank"><div><div class="cll">LinkedIn</div><div class="clv">linkedin.com/in/krzysztoferwinski</div></div></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer><p>© 2025 Christopher · AI Automation Builder · Netherlands</p></footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.ph,.sv').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='rgba(212,160,74,0.65)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(212,160,74,0.35)';});
+});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function tog(id){
+  const b=document.getElementById('b-'+id),t=document.getElementById('t-'+id);
+  const o=b.classList.contains('op');
+  b.classList.toggle('op',!o);t.classList.toggle('op',!o);
+}
+</script>
+</body>
+</html>
