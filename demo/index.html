@@ -2,16 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo — Erwinski Automation</title>
-  <meta http-equiv="refresh" content="0; url=https://www.loom.com/share/a097f7e46b354abcb82ac9f8a7708545">
-  <link rel="canonical" href="https://www.loom.com/share/a097f7e46b354abcb82ac9f8a7708545">
   <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@500;600&family=Karla:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #EDEEE9;
+      --ink: #1C2420;
+      --muted: #5C6660;
+      --accent: #2F4A3D;
+      --hairline: #D3D6CE;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Karla', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: clamp(48px, 10vw, 96px) 24px 64px;
+    }
+    .note {
+      font-family: 'Petrona', serif;
+      font-weight: 500;
+      font-size: clamp(24px, 4vw, 30px);
+      line-height: 1.35;
+      margin: 0 0 28px;
+      max-width: 20ch;
+    }
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .video-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .body-text {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      max-width: 42ch;
+      margin: 32px 0 0;
+    }
+    .closing {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      max-width: 42ch;
+      margin: 28px 0 0;
+    }
+    .contact-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+    .contact-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .signature {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--hairline);
+      font-family: 'Petrona', serif;
+      font-size: 15px;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to the demo…
-    <a href="https://www.loom.com/share/a097f7e46b354abcb82ac9f8a7708545">
-      Click here if you are not redirected automatically.
-    </a>
-  </p>
+  <div class="wrap">
+    <p class="note">Here's the 90 seconds I mentioned.</p>
+
+    <div class="video-frame">
+      <iframe
+        src="https://www.loom.com/embed/a097f7e46b354abcb82ac9f8a7708545"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        title="Lead automation demo"
+      ></iframe>
+    </div>
+
+    <p class="body-text">A lead comes in. It's read, scored Hot, Warm, or Cold, and logged automatically — no one has to touch a spreadsheet. That's what's running in the video above, on a real lead tracker.</p>
+
+    <p class="closing">If something like this would help your business, just reply to my email — or reach me directly at <a class="contact-link" href="mailto:christopher@erwinski.com">christopher@erwinski.com</a>.</p>
+
+    <p class="signature">Christopher — Erwinski Automation</p>
+  </div>
 </body>
 </html>
