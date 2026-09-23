@@ -46,7 +46,7 @@
       overflow: hidden;
       background: #fff;
     }
-    .video-frame iframe {
+    .video-frame video {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -89,15 +89,12 @@
 </head>
 <body>
   <div class="wrap">
-    <p class="note">Here's the 90 seconds I mentioned.</p>
+    <p class="note">Here's the 35 seconds I mentioned.</p>
 
     <div class="video-frame">
-      <iframe
-        src="https://www.loom.com/embed/a097f7e46b354abcb82ac9f8a7708545"
-        allow="autoplay; fullscreen"
-        allowfullscreen
-        title="Lead automation demo"
-      ></iframe>
+      <video controls preload="metadata" title="Lead automation demo">
+        <source src="/assets/lead-tracker-demo.mp4" type="video/mp4">
+      </video>
     </div>
 
     <p class="body-text">A lead comes in. It's read, scored Hot, Warm, or Cold, and logged automatically — no one has to touch a spreadsheet. That's what's running in the video above, on a real lead tracker.</p>
